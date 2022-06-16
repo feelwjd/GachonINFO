@@ -1,0 +1,13 @@
+<!-- pagenation -->
+<div class="btn-group">
+    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        Log List
+    </button>
+    <ul class="dropdown-menu">
+        <% for (var i=1; i < fileList.length; i++) {%>
+            <li><a class="dropdown-item" href="/logsearch/<%=i %>">
+                    <%= fileList[i] %>
+                </a></li>
+            <% } %>
+    </ul>
+</div>

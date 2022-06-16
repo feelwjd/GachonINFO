@@ -1,0 +1,86 @@
+<!-- This snippet uses Font Awesome 5 Free as a dependency. You can download it at fontawesome.io! -->
+
+<body>
+    <div class="container">
+        <div class="container justify-content-center">
+            <%- include ('../partials/nav') %>
+                <br><br>
+        </div>
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card border-0 shadow rounded-3 my-5">
+                    <div class="card-body p-4 p-sm-5">
+                        <h5 class="card-title text-center mb-5 fw-light fs-5">Change Password</h5>
+                        <form action="/pw_change" method="post" enctype='application/json' name="pw_change">
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control" name="id" id="id"
+                                    placeholder="name@example.com">
+                                <label for="userid">Email address</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" name="current_pw" id="current_pw"
+                                    placeholder="Password">
+                                <label for="pw">Current Password</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" name="pw" id="pw" placeholder="Password">
+                                <label for="pw">New Password</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" name="pw_check" id="pw_check"
+                                    placeholder="Password">
+                                <label for="pw_check">New Password Check</label>
+                            </div>
+                            <hr class="my-4">
+                        </form>
+                        <div class="d-grid">
+                            <button class="btn btn-primary btn-login text-uppercase fw-bold" onclick="form_check()"
+                                type="button">Change
+                                Password</button>
+                        </div>
+                        <p className="forgot-password text-right">
+                            <a href="/">뒤로 가기</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <%- include('../partials/scripts') %>
+</body>
+<script>
+    function form_check() {
+        var id = document.getElementById('id');
+        var current_pw = document.getElementById('current_pw');
+        var p1 = document.getElementById('pw');
+        var p2 = document.getElementById('pw_check');
+        if (id.value == "") {
+            alert("ID를 입력하세요.");
+            id.focus();
+            return false;
+        };
+        if (current_pw.value == "") {
+            alert("현재 비밀번호를 입력하세요.");
+            current_pw.focus();
+            return false;
+        };
+        if (p1.value == "") {
+            alert("비밀번호를 입력하세요.");
+            p1.focus();
+            return false;
+        };
+        if (p2.value == "") {
+            alert("바꿀 비밀번호를 입력하세요.");
+            p2.focus();
+            return false;
+        };
+        if (p1.value != p2.value) {
+            alert("비밀번호가 일치 하지 않습니다");
+            p2.focus();
+            return false;
+        }
+        document.pw_change.submit();
+    };
+</script>

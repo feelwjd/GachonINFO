@@ -1,0 +1,130 @@
+<!-- This snippet uses Font Awesome 5 Free as a dependency. You can download it at fontawesome.io! -->
+
+<body>
+    <div class="container justify-content-center">
+        <%- include ('../partials/nav') %>
+            <br><br>
+    </div>
+    <div class="container py-5">
+        <header class="text-center text-white">
+        </header>
+        <div class="row py-5">
+            <div class="col-lg-10 mx-auto">
+                <div class="card rounded shadow border-0">
+                    <div class="card-body p-5 bg-white rounded">
+                        <div class="table-responsive" style="overflow-x:auto;">
+                            <h2>연계 데이터 모니터링 시스템</h2>
+                            <hr>
+                            <div class="row">
+                                <div class="col-9">
+                                    <h5>LOG DATE : <%= filename %>
+                                    </h5>
+                                </div>
+                                <div class="col">
+                                    <%- include('../partials/loglist') %>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control" placeholder="시 간" id="keyword_1">
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control" placeholder="상 태" id="keyword_2">
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control" placeholder="I/F 명" id="keyword_3">
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control" placeholder="처리코드" id="keyword_4">
+                                </div>
+                            </div>
+                            <hr>
+                            <!--TABLE-->
+                            <table class="table table-striped table-bordered" id="user-table">
+                                <thead>
+                                    <tr>
+                                        <th>날짜 및 시간</th>
+                                        <th>상태</th>
+                                        <th>I/F 명</th>
+                                        <th>처리코드</th>
+                                        <th>처리 건수</th>
+                                        <th>성공 건수</th>
+                                        <th>실패 건수</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <%for(let i=0;i<list.length;i++){%>
+                                        <tr>
+                                            <td>
+                                                <%=list[i].time%>
+                                            </td>
+                                            <td>
+                                                <%=list[i].status%>
+                                            </td>
+                                            <td>
+                                                <%=list[i].interface%>
+                                            </td>
+                                            <td>
+                                                <%=list[i].process_code%>
+                                            </td>
+                                            <td>
+                                                <%=list[i].process_all%>
+                                            </td>
+                                            <td>
+                                                <%=list[i].process_success%>
+                                            </td>
+                                            <td>
+                                                <%=list[i].process_fail%>
+                                            </td>
+                                        </tr>
+                                        <%}%>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <%- include('../partials/scripts') %>
+</body>
+<script>
+    $(document).ready(function () {
+        $("#keyword_1").keyup(function () {
+            var k = $(this).val();
+            $("#user-table > tbody > tr").hide();
+            var temp = $("#user-table > tbody > tr > td:nth-child(7n+1):contains('" + k + "')");
+            $(temp).parent().show();
+        })
+    })
+    $(document).ready(function () {
+        $("#keyword_2").keyup(function () {
+            var k = $(this).val();
+            $("#user-table > tbody > tr").hide();
+            var temp = $("#user-table > tbody > tr > td:nth-child(7n+2):contains('" + k + "')");
+
+            $(temp).parent().show();
+        })
+    })
+    $(document).ready(function () {
+        $("#keyword_3").keyup(function () {
+            var k = $(this).val();
+            $("#user-table > tbody > tr").hide();
+            var temp = $("#user-table > tbody > tr > td:nth-child(7n+3):contains('" + k + "')");
+
+            $(temp).parent().show();
+        })
+    })
+    $(document).ready(function () {
+        $("#keyword_4").keyup(function () {
+            var k = $(this).val();
+            $("#user-table > tbody > tr").hide();
+            var temp = $("#user-table > tbody > tr > td:nth-child(7n+4):contains('" + k + "')");
+
+            $(temp).parent().show();
+        })
+    })
+</script>

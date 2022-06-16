@@ -1,0 +1,97 @@
+<!-- This snippet uses Font Awesome 5 Free as a dependency. You can download it at fontawesome.io! -->
+
+<body>
+    <div class="container">
+        <div class="container justify-content-center">
+            <%- include ('../partials/nav') %>
+                <br><br>
+        </div>
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card border-0 shadow rounded-3 my-5">
+                    <div class="card-body p-4 p-sm-5">
+                        <h5 class="card-title text-center mb-5 fw-light fs-5">Sign Up</h5>
+                        <form action="/signup" method="post" enctype='application/json' name="signup">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" name="studentid" id="studentid"
+                                    placeholder="Student ID">
+                                <label for="username">Student ID</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" name="username" id="username"
+                                    placeholder="User Name">
+                                <label for="username">User Name</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control" name="userid" id="userid"
+                                    placeholder="name@example.com">
+                                <label for="userid">Email address</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" name="pw" id="pw" placeholder="Password">
+                                <label for="pw">Password</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" name="pw_check" id="pw_check"
+                                    placeholder="Password">
+                                <label for="pw_check">Password Check</label>
+                            </div>
+
+                            <hr class="my-4">
+                        </form>
+                        <div class="d-grid">
+                            <button class="btn btn-primary btn-login text-uppercase fw-bold" onclick="form_check()">Sign
+                                Up</button>
+                        </div>
+                        <p className="forgot-password text-right">
+                            이미 회원이신가요? <a href="/">로그인</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <%- include('../partials/scripts') %>
+</body>
+<script>
+    function form_check() {
+        var studentid = document.getElementById('studentid');
+        var username = document.getElementById('username');
+        var userid = document.getElementById('userid');
+        var p1 = document.getElementById('pw');
+        var p2 = document.getElementById('pw_check');
+        if (studentid.value == "") {
+            alert("학번을 입력하세요.");
+            studentid.focus();
+            return false;
+        };
+        if (username.value == "") {
+            alert("이름을 입력하세요.");
+            username.focus();
+            return false;
+        };
+        if (userid.value == "") {
+            alert("이메일을 입력하세요.");
+            userid.focus();
+            return false;
+        };
+        if (p1.value == "") {
+            alert("비밀번호를 입력하세요.");
+            p1.focus();
+            return false;
+        };
+        if (p2.value == "") {
+            alert("바꿀 비밀번호를 입력하세요.");
+            p2.focus();
+            return false;
+        };
+        if (p1.value != p2.value) {
+            alert("비밀번호가 일치 하지 않습니다");
+            p2.focus();
+            return false;
+        }
+        document.signup.submit();
+    };
+</script>
